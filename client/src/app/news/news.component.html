@@ -10,9 +10,11 @@
 <div>
   <ul class="posts">
     <li *ngFor="let post of posts">
-      <span>{{post.title}}</span>
-      <button class="like">Like</button>
-      <span>{{post.likes}}</span>
+      <div class="card-1">
+        <span>{{post.title}}</span>
+        <button class="like">Like</button>
+        <span>{{post.likes}}</span>
+      </div>
     </li>
   </ul>
 </div>
