@@ -1,0 +1,14 @@
+<div *ngIf="post">
+  <h2>{{post.title}} details!</h2>
+  <div>
+    <label>id: </label>{{post.id}}
+  </div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="post.title" placeholder="name"/>
+  </div>
+  <div>
+    <label>likes: </label>{{post.likes}}
+  </div>
+  <button (click)="goBack()">Back</button>
+</div>
