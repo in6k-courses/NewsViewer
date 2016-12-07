@@ -23,6 +23,15 @@ export class TagsComponent implements OnInit {
     this.tagService.getAllTags().then(tags => this.tags = tags)
   }
 
+  add(title: string): void {
+    title = title.trim();
+    if (!title) { return; }
+    this.tagService.create(title)
+      .then(tag => {
+        this.tags.push(tag);
+      });
+  }
+
   goBack(): void {
     this.location.back();
   }

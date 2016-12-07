@@ -22,4 +22,8 @@ public class TagService {
     public List<Tag> getAllTags() {
         return tagDAO.getAllTags();
     }
+
+    public void createTag(String title) {
+        tagDAO.createTag(title);
+    }
 }

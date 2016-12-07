@@ -24,5 +24,6 @@ public class TagDAO {
     public void createTag(String title){
         Session session = sessionFactory.getCurrentSession();
         Tag tag = new Tag(title);
+        session.save(tag);
     }
 }
