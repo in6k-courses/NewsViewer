@@ -1,19 +1,23 @@
-<h2>Categories</h2>
-<div>
-  <ul class="tags">
+<div class="categories">
+  <h2>Categories</h2>
+  <ul>
     <li *ngFor="let tag of tags">
       <span><a href="" (click)="gotoCategory(tag)">{{tag.title}}</a></span>
     </li>
   </ul>
 </div>
-<h2>Fresh news</h2>
-<div>
-  <ul class="posts">
+<div class="news">
+  <h2>Fresh news</h2>
+  <ul>
     <li *ngFor="let post of posts">
-      <div class="card-1">
-        <span>{{post.title}}</span>
-        <button class="like">Like</button>
-        <span>{{post.likes}}</span>
+      <div class="card-1 post">
+        <div>
+          <span class="post-title">{{post.title}}</span>
+        </div>
+        <div>
+          <button class="like">Like</button>
+          <span>{{post.likes}}</span>
+        </div>
       </div>
     </li>
   </ul>

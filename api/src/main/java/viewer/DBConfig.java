@@ -27,11 +27,11 @@ public class DBConfig {
 
     private String DB_PASSWORD="root";
 
-    private String DB_URL="jdbc:mysql://localhost:3306/news_viewer?useSSL=false";
+    private String DB_URL="jdbc:mysql://db:33060/news_viewer?useSSL=false";
 
     private String DB_USERNAME="root";
 
-    private String HIBERNATE_DIALECT="org.hibernate.dialect.MySQLDialect";
+    private String HIBERNATE_DIALECT="org.hibernate.dialect.MySQL5Dialect";
 
     private String HIBERNATE_SHOW_SQL="false";
 
