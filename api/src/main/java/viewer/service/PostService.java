@@ -39,4 +39,8 @@ public class PostService {
     public Post getBestPost() {
         return postDAO.getBestPost();
     }
+
+    public void createPost(String title) {
+        postDAO.createPost(title, 1);
+    }
 }

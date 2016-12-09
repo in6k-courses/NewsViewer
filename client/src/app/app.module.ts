@@ -9,13 +9,16 @@ import {NewsService} from "./services/news.service";
 import {BestPostComponent} from "./bestpost/bestpost.component";
 import {TagsComponent} from "./tags/tags.component";
 import {TagService} from "./services/tag.crud.service";
+import {NewpostComponent} from "./newpost/newpost.component";
+import {PostService} from "./services/new.post.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     NewsComponent,
     BestPostComponent,
-    TagsComponent
+    TagsComponent,
+    NewpostComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import {TagService} from "./services/tag.crud.service";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [NewsService, TagService],
+  providers: [NewsService, TagService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
