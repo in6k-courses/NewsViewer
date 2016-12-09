@@ -27,7 +27,7 @@ public class DBConfig {
 
     private String DB_PASSWORD="root";
 
-    private String DB_URL="jdbc:mysql://db:33060/news_viewer?useSSL=false";
+    private String DB_URL="jdbc:mysql://db:3306/news_viewer?useSSL=false";
 
     private String DB_USERNAME="root";
 

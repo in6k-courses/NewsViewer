@@ -1,7 +1,7 @@
 db:
  build: ./db
  ports:
- - "33061:3306"
+  - "33060:3306"
 
 api:
  build: ./api
@@ -9,6 +9,7 @@ api:
  - "8080:8080"
  volumes:
  - ./api:/api
+ command: /bin/sh /api/start.sh
  links:
      - db
 
