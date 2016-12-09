@@ -19,6 +19,7 @@ export class PostService {
   }
 
   create(title: string): void {
+    if (!title){return;}
     this.http
       .post(this.postUrl, JSON.stringify({title: title}), {headers: this.headers})
       .toPromise()

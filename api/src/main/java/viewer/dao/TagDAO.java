@@ -21,9 +21,10 @@ public class TagDAO {
         return sessionFactory.getCurrentSession().createCriteria(Tag.class).list();
     }
 
-    public void createTag(String title){
+    public Tag createTag(String title){
         Session session = sessionFactory.getCurrentSession();
         Tag tag = new Tag(title);
         session.save(tag);
+        return tag;
     }
 }

@@ -7,7 +7,7 @@
   </ul>
 </div>
 <label>Tag name:</label> <input #tagTitle />
-<button (click)="add(tagTitle.value); tagTitle.value=''">
+<button (click)="createTag(tagTitle.value); tagTitle.value=''">
   Add
 </button>
 <button (click)="goBack()">Back</button>

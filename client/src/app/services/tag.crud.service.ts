@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response, Headers} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Tag} from "../models/tag";
 
@@ -15,7 +15,7 @@ export class TagService {
     return this.http
       .post(this.tagUrl, JSON.stringify({title: title}), {headers: this.headers})
       .toPromise()
-      .then(res => res.json())
+      .then(tag => tag.json())
       .catch(this.handleError);
   }
 

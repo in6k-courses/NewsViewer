@@ -27,8 +27,8 @@ public class TagRestController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    @ResponseBody String createTag(@RequestBody()Tag tag){
-        tagService.createTag(tag.getTitle());
-        return "";
+    @ResponseBody
+    Tag createTag(@RequestBody()Tag tag){
+        return tagService.createTag(tag.getTitle());
     }
 }
