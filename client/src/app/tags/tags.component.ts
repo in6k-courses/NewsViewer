@@ -32,6 +32,10 @@ export class TagsComponent implements OnInit {
       });
   }
 
+  deleteTag(tag: Tag): Promice<void>{
+    this.tagService.delete(tag.id)
+  }
+
   goBack(): void {
     this.location.back();
   }

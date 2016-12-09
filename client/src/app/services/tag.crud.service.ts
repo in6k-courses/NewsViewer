@@ -28,6 +28,13 @@ export class TagService {
   }
 
 
+  delete(id: number) {
+    this.http.delete(this.tagUrl + "/" + id, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
+      .catch()
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
