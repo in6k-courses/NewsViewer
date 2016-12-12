@@ -27,8 +27,8 @@ public class CommentRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody String deleteComment(@PathVariable("id")Integer id){
+    @ResponseBody Comment deleteComment(@PathVariable("id")Integer id){
         commentService.deleteComment(id);
-        return "";
+        return null;
     }
 }

@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {NewsService} from "../services/news.service";
 import {Post} from "../models/post";
 import {Tag} from "../models/tag";
+import {Comment} from "../models/comment";
+import {CommentService} from "../services/comment.service";
 
 @Component({
   selector: 'app-news',
@@ -13,7 +15,7 @@ export class NewsComponent implements OnInit {
   posts: Post[];
   tags: Tag[];
 
-  constructor(private newsService : NewsService) { }
+  constructor(private newsService : NewsService, private comService: CommentService ) { }
 
   ngOnInit() {
     this.getAllTags();
@@ -30,5 +32,10 @@ export class NewsComponent implements OnInit {
 
   private gotoCategory(tag: Tag): void{
     alert(tag.title);
+  }
+
+  private deleteComment(comment: Comment, post: Post){
+    this.comService.deleteComment(comment.id)
+      .then(()=> this.posts = this.posts.filter(p =>{ if(p.id === post.id)return post.comments.filter(c=> c !== comment)}))
   }
 }

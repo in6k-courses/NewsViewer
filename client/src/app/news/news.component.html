@@ -18,6 +18,12 @@
           <button class="like">Like</button>
           <span>{{post.likes}}</span>
         </div>
+        <div *ngFor="let com of post.comments">
+          <span>{{com.title}}</span>
+          <button class="delete"
+                  (click)="deleteComment(com, post)">x
+          </button>
+        </div>
       </div>
     </li>
   </ul>
