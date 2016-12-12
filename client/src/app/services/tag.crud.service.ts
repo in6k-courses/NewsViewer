@@ -28,11 +28,11 @@ export class TagService {
   }
 
 
-  delete(id: number) {
-    this.http.delete(this.tagUrl + "/" + id, {headers: this.headers})
+  delete(id: number): Promise<void> {
+    return this.http.delete(this.tagUrl + "/" + id, {headers: this.headers})
       .toPromise()
       .then(() => null)
-      .catch()
+      .catch(this.handleError)
   }
 
   private handleError(error: any): Promise<any> {

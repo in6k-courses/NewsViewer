@@ -30,8 +30,8 @@ public class TagRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody String deleteTag(@PathVariable()Integer id){
+    @ResponseBody Tag deleteTag(@PathVariable()Integer id){
         tagService.deleteTag(id);
-        return "";
+        return null;
     }
 }

@@ -3,6 +3,7 @@ import {TagService} from "../services/tag.crud.service";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {Tag} from "../models/tag";
+import Promise = webdriver.promise.Promise;
 
 @Component({
   selector: 'app-tags',
@@ -32,8 +33,9 @@ export class TagsComponent implements OnInit {
       });
   }
 
-  deleteTag(tag: Tag): Promice<void>{
+  deleteTag(tag: Tag): void{
     this.tagService.delete(tag.id)
+      .then(()=> {this.tags = this.tags.filter(t => t !== tag)})
   }
 
   goBack(): void {
