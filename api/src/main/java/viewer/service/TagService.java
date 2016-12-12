@@ -26,4 +26,8 @@ public class TagService {
     public Tag createTag(String title) {
        return tagDAO.createTag(title);
     }
+
+    public void deleteTag(Integer id) {
+        tagDAO.deleteTag(id);
+    }
 }

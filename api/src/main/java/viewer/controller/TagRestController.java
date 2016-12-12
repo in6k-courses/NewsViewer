@@ -2,10 +2,7 @@ package viewer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import viewer.model.Tag;
 import viewer.service.TagService;
 
@@ -30,5 +27,11 @@ public class TagRestController {
     @ResponseBody
     Tag createTag(@RequestBody()Tag tag){
         return tagService.createTag(tag.getTitle());
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseBody String deleteTag(@PathVariable()Integer id){
+        tagService.deleteTag(id);
+        return "";
     }
 }

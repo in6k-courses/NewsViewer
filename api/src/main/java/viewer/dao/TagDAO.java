@@ -8,6 +8,8 @@ import viewer.model.Tag;
 
 import java.util.List;
 
+import static org.hibernate.criterion.Restrictions.eq;
+
 /**
  * Created by employee on 12/6/16.
  */
@@ -26,5 +28,11 @@ public class TagDAO {
         Tag tag = new Tag(title);
         session.save(tag);
         return tag;
+    }
+
+    public void deleteTag(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+        Tag tag = (Tag) session.createCriteria(Tag.class).add(eq("id", id)).uniqueResult();
+        session.delete(tag);
     }
 }
