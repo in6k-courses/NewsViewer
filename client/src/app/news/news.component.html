@@ -25,7 +25,7 @@
           </button>
         </div>
         <input #newComm placeholder="New comment"/>
-        <button (click)="createComm(newComm.value, post)">
+        <button (click)="createComm(newComm.value, post); newComm.value = ''">
           Add
         </button>
       </div>
