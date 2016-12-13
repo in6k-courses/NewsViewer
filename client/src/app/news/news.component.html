@@ -24,6 +24,10 @@
                   (click)="deleteComment(com, post)">x
           </button>
         </div>
+        <input #newComm placeholder="New comment"/>
+        <button (click)="createComm(newComm.value, post)">
+          Add
+        </button>
       </div>
     </li>
   </ul>

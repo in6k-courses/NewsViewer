@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Headers, Http} from "@angular/http";
+import {Comment} from "../models/comment";
 
 @Injectable()
 export class CommentService {
@@ -13,6 +14,14 @@ export class CommentService {
       .delete(this.commentUrl + "/" + id, {headers: this.headers})
       .toPromise()
       .then(() => null)
+      .catch(this.handleError)
+  }
+
+  createComment(title: string, pId: number): Promise<Comment>{
+    return this.http
+      .post(this.commentUrl,JSON.stringify({title: title, likes:0, postId: pId}), {headers: this.headers})
+      .toPromise()
+      .then(comment => comment.json())
       .catch(this.handleError)
   }
 

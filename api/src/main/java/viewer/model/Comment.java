@@ -33,6 +33,12 @@ public class Comment {
     public Comment() {
     }
 
+    public Comment(String title, Integer likes, Integer postId) {
+        this.title = title;
+        this.likes = likes;
+        this.postId = postId;
+    }
+
     public int getId() {
         return id;
     }
