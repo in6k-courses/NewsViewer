@@ -63,6 +63,9 @@ public class PostDAO {
     }
 
     public List<Post> getAll() {
-        return sessionFactory.getCurrentSession().createCriteria(Post.class).list();
+        return sessionFactory.getCurrentSession().createCriteria(Post.class)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .list();
     }
+
 }
