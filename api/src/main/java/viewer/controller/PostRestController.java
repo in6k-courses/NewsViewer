@@ -12,7 +12,7 @@ import java.util.List;
  * Created by employee on 12/6/16.
  */
 @Controller
-@RequestMapping("/api/post")
+@RequestMapping("/api/posts")
 public class PostRestController {
 
     @Autowired

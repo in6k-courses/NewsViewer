@@ -6,7 +6,7 @@ import {Post} from "../models/post";
 
 @Injectable()
 export class PostService {
-  private postUrl = 'api/post';  // URL to web API
+  private postUrl = 'api/posts';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor (private http: Http) {}

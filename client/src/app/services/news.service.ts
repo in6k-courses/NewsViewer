@@ -7,7 +7,7 @@ import {Tag} from "../models/tag";
 
 @Injectable()
 export class NewsService {
-  private postUrl = 'api/post';  // URL to web API
+  private postUrl = 'api/posts';  // URL to web API
   private tagUrl = 'api/tag';  // URL to web API
   private headers = new Headers({'Content-Type': 'application/json'});
 
