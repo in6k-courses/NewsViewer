@@ -11,7 +11,7 @@ import java.util.List;
 public class Post {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "p_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -21,12 +21,12 @@ public class Post {
     @Column(name = "likes")
     private Integer likes;
 
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "post")
     private List<Comment> comments;
 
+//    @JsonIgnore
 //    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "posts")
-//    private List<Tag> tags = new ArrayList();
+//    private List<Tag> tags ;
 
     public Post() {
     }

@@ -33,7 +33,7 @@ public class PostDAO {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Post.class)
                 .add(eq("id", postId));
         Post post = (Post) criteria.uniqueResult();
-        post.setLikes(post.getLikes() + 1);
+        post.setLikes(post.getLikes() == null ? 1 : post.getLikes() + 1  );
         sessionFactory.getCurrentSession().save(post);
         return post;
     }

@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Comment {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "c_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 

@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import viewer.model.Post;
 import viewer.model.Tag;
 
 import java.util.List;
@@ -20,7 +21,11 @@ public class TagDAO {
     SessionFactory sessionFactory;
 
     public List<Tag> getAllTags(){
-        return sessionFactory.getCurrentSession().createCriteria(Tag.class).list();
+        List<Tag> tags = sessionFactory.getCurrentSession().createCriteria(Tag.class).list();
+        for (Tag tag : tags) {
+            tag.getPosts().forEach(Post::getTitle);
+        }
+        return tags;
     }
 
     public Tag createTag(String title){
