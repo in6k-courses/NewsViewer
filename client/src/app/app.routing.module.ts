@@ -8,10 +8,10 @@ import {NewpostComponent} from "./newpost/newpost.component";
 const routes: Routes = [
   { path: '', redirectTo: '/news', pathMatch: 'full' },
   { path: 'news',  component: NewsComponent },
+  { path: 'news/category/:id', component: NewsComponent},
   { path: 'best', component: BestPostComponent},
   { path: 'tag', component: TagsComponent},
   { path: 'post', component: NewpostComponent}
-  // { path: 'best/:id', component: BestPostComponent},
   // { path: 'heroes',     component: HeroesComponent }
 ];
 
