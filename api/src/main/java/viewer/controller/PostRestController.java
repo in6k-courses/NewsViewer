@@ -30,9 +30,8 @@ public class PostRestController {
     }
 
     @RequestMapping(value = "/{id}/like", method = RequestMethod.PATCH)
-    @ResponseBody String addLike(@PathVariable("id")Integer id){
-        postService.addLike(id);
-        return "";
+    @ResponseBody Post addLike(@PathVariable("id")Integer id){
+        return postService.addLike(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

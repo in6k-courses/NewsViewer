@@ -29,12 +29,13 @@ public class PostDAO {
         return (Post) criteria.uniqueResult();
     }
 
-    public void addLike(Integer postId){
+    public Post addLike(Integer postId){
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Post.class)
                 .add(eq("id", postId));
         Post post = (Post) criteria.uniqueResult();
         post.setLikes(post.getLikes() + 1);
         sessionFactory.getCurrentSession().save(post);
+        return post;
     }
 
     public void deletePost(Integer id){

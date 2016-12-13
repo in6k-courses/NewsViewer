@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response, Headers} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Post} from "../models/post";
 import {Tag} from "../models/tag";
@@ -33,6 +33,13 @@ export class NewsService {
       .get(this.postUrl + "/best")
       .toPromise()
       .then(resp => resp.json() as Post)
+      .catch(this.handleError)
+  }
+
+  addLike(id: number): Promise<Post> {
+    return this.http.patch(this.postUrl + "/" + id + "/like")
+      .toPromise()
+      .then(post => post.json())
       .catch(this.handleError)
   }
 

@@ -23,8 +23,8 @@ public class PostService {
         return postDAO.getPostById(id);
     }
 
-    public void addLike(Integer id) {
-        postDAO.addLike(id);
+    public Post addLike(Integer id) {
+        return postDAO.addLike(id);
     }
 
     public void deletePost(Integer id) {

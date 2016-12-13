@@ -45,4 +45,9 @@ export class NewsComponent implements OnInit {
     this.comService.createComment(title, post.id)
       .then(comm => post.comments.push(comm))
   }
+
+  private addLike(post: Post): void{
+    this.newsService.addLike(post.id)
+      .then(newPost => post.likes = newPost.likes)
+  }
 }
