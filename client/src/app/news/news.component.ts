@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import "rxjs/add/operator/switchMap";
 import {NewsService} from "../services/news.service";
 import {Post} from "../models/post";
@@ -24,9 +24,9 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     this.getAllTags();
     this.getAllNews();
-    this.route.params
-      .switchMap((params: Params) => params['id'])
-      .subscribe(h => alert(h))
+    // this.route.params
+    //   .switchMap((params: Params) => params['id'])
+    //   .subscribe(h => alert(h))
   }
 
   getAllNews(): void {
