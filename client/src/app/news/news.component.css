@@ -36,3 +36,8 @@ h2 {
 .post-title{
   margin: auto;
 }
+
+.post-like{
+  text-decoration: none;
+  cursor: pointer;
+}
