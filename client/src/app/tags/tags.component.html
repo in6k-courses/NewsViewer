@@ -6,23 +6,22 @@
       <div class="panel-heading">Categories</div>
 
       <!-- Table -->
-      <table class="table">
+      <table class="table table-condensed table-striped">
         <thead>
-        <tr>
-          <th>Number</th>
-          <th>Name</th>
-        </tr>
-
+          <tr>
+            <th>Number</th>
+            <th>Name</th>
+          </tr>
+        </thead>
         <tr *ngFor="let tag of tags; let num = index">
           <td>{{num + 1}}</td>
           <td>
             <a href="" (click)="gotoCategory(tag)">{{tag.title}}</a>
             <button class="btn btn-default btn-xs"
-                    (click)="deleteTag(tag)"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    (click)="deleteTag(tag)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </button>
           </td>
         </tr>
-        </thead>
       </table>
     </div>
 
