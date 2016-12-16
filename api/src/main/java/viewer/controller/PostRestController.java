@@ -35,9 +35,9 @@ public class PostRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody String deletePost(@PathVariable("id")Integer id){
+    @ResponseBody Post deletePost(@PathVariable("id")Integer id){
         postService.deletePost(id);
-        return "";
+        return null;
     }
 
     @RequestMapping(value = "/best", method = RequestMethod.GET)

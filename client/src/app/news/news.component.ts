@@ -46,6 +46,11 @@ export class NewsComponent implements OnInit {
       .then(()=> {post.comments = post.comments.filter(com => com !== comment)})
   }
 
+  private deletePost(post: Post){
+    this.newsService.deletePost(post.id)
+      .then(()=> {this.posts = this.posts.filter(p => p !== post)})
+  }
+
   private createComm(title: string, post: Post): void{
     title = title.trim();
     if (!title) {return;}

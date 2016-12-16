@@ -1,30 +1,3 @@
-<!--<div class="news">-->
-<!--<h2>Fresh news</h2>-->
-<!--<ul>-->
-<!--<li *ngFor="let post of posts">-->
-<!--<div class="card-1 post">-->
-<!--<div>-->
-<!--<span class="post-title">{{post.title}}</span>-->
-<!--</div>-->
-<!--<div>-->
-<!--<button class="like" (click)="addLike(post)">Like</button>-->
-<!--<span>{{post.likes}}</span>-->
-<!--</div>-->
-
-<!--<div *ngFor="let com of post.comments">-->
-<!--<span>{{com.title}}</span>-->
-<!--<button class="delete"-->
-<!--(click)="deleteComment(com, post)">x-->
-<!--</button>-->
-<!--</div>-->
-<!--<input #newComm placeholder="New comment"/>-->
-<!--<button (click)="createComm(newComm.value, post); newComm.value = ''">-->
-<!--Add-->
-<!--</button>-->
-<!--</div>-->
-<!--</li>-->
-<!--</ul>-->
-
 <div class="container">
   <div class="row">
 
@@ -38,17 +11,15 @@
     <div class="col-md-5">
       <div class="list-group" *ngFor="let post of posts">
         <a class="list-group-item">
-            <span class="glyphicon glyphicon-remove delete-post" aria-hidden="true"></span>
-            <h4 class="list-group-item-heading">{{post.title}}</h4>
-              <a class="post-like" (click)="addLike(post)">
+          <span (click)="deletePost(post)" class="glyphicon glyphicon-remove delete-post" aria-hidden="true"></span>
+          <h4 class="list-group-item-heading">{{post.title}}</h4>
+          <a class="post-like" (click)="addLike(post)">
               <span class="glyphicon glyphicon-heart" aria-hidden="true">
               </span>{{post.likes}} </a>
-
-              <a class="post-comments">
-                <span class="glyphicon glyphicon-comment">{{post.comments.length}}</span></a>
+          <a class="post-comments">
+            <span class="glyphicon glyphicon-comment">{{post.comments.length}}</span></a>
         </a>
       </div>
     </div>
   </div>
 </div>
-<!--</div>-->

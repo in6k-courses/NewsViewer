@@ -18,6 +18,7 @@ export class NewpostComponent implements OnInit {
 
   create(title: string): void {
     this.service.create(title);
+    this.router.navigate("/news")
   }
 
   goBack(): void {
