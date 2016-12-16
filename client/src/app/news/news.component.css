@@ -40,4 +40,17 @@ h2 {
 .post-like{
   text-decoration: none;
   cursor: pointer;
+  float: right;
+  margin-right: 2%;
+}
+
+.post-comments{
+  text-decoration: none;
+  cursor: pointer;
+  color: darkorange;
+
+}
+
+.delete-post{
+  float: right;
 }
