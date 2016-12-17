@@ -43,7 +43,7 @@ export class NewsService {
       .catch(this.handleError)
   }
 
-  private deletePost(id: number): Promise<void> {
+  deletePost(id: number): Promise<void> {
     return this.http.delete(this.postUrl + "/" + id, {headers: this.headers})
       .toPromise()
       .then(() => null)
