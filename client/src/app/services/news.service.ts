@@ -3,6 +3,10 @@ import {Http, Headers} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Post} from "../models/post";
 import {Tag} from "../models/tag";
+import {Observable} from "rxjs";
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 
 @Injectable()
@@ -13,45 +17,39 @@ export class NewsService {
 
   constructor (private http: Http) {}
 
-  getAllPost(): Promise<Post[]> {
+  getAllPosts(): Observable<Post[]> {
     return this.http.get(this.postUrl)
-      .toPromise()
-      .then(response => response.json() as Post[])
+      .map(response => response.json() as Post[])
       .catch(this.handleError);
   }
 
-  getAllTags(): Promise<Tag[]> {
+  getAllTags(): Observable<Tag[]> {
     return this.http
       .get(this.tagUrl)
-      .toPromise()
-      .then(response => response.json() as Tag[])
-      .catch(this.handleError)
+      .map(response => response.json() as Tag[])
+      .catch((err: any) => this.handleError(err))
   }
 
-  getBestPost(): Promise<Post>{
+  getBestPost(): Observable<Post>{
     return this.http
       .get(this.postUrl + "/best")
-      .toPromise()
-      .then(resp => resp.json() as Post)
-      .catch(this.handleError)
+      .map(resp => resp.json() as Post)
+      .catch((err: any) => this.handleError(err))
   }
 
-  addLike(id: number): Promise<Post> {
+  addLike(id: number): Observable<Post> {
     return this.http.patch(this.postUrl + "/" + id + "/like")
-      .toPromise()
-      .then(post => post.json())
+      .map(post => post.json())
       .catch(this.handleError)
   }
 
-  deletePost(id: number): Promise<void> {
+  deletePost(id: number): Observable<void> {
     return this.http.delete(this.postUrl + "/" + id, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError)
+      .map(() => null)
+      .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private handleError(error: any): Observable<any> {
+    return Observable.throw(error.json().error || 'Server error');
   }
 }

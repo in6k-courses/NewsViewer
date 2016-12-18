@@ -21,21 +21,21 @@ export class TagsComponent implements OnInit {
   }
 
   private getAllTags() {
-    this.tagService.getAllTags().then(tags => this.tags = tags)
+    this.tagService.getAllTags().subscribe(tags => this.tags = tags)
   }
 
   createTag(title: string): void {
     title = title.trim();
     if (!title) { return; }
     this.tagService.create(title)
-      .then(tag => {
+      .subscribe(tag => {
         this.tags.push(tag);
       });
   }
 
   deleteTag(tag: Tag): void{
     this.tagService.delete(tag.id)
-      .then(()=> {this.tags = this.tags.filter(t => t !== tag)})
+      .subscribe(()=> {this.tags = this.tags.filter(t => t !== tag)})
   }
 
   goBack(): void {

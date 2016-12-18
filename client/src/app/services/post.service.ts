@@ -3,6 +3,10 @@ import {Http, Headers} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Post} from "../models/post";
 
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import {Observable} from "rxjs";
+
 
 @Injectable()
 export class PostService {
@@ -11,10 +15,9 @@ export class PostService {
 
   constructor (private http: Http) {}
 
-  getAllPost(): Promise<Post[]> {
+  getAllPosts(): Observable<Post[]> {
     return this.http.get(this.postUrl)
-      .toPromise()
-      .then(response => response.json() as Post[])
+      .map(response => response.json() as Post[])
       .catch(this.handleError);
   }
 
@@ -25,8 +28,7 @@ export class PostService {
       .toPromise()
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private handleError(error: any): Observable<any> {
+    return Observable.throw(error.json().error || 'Server error');
   }
 }

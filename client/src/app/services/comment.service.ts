@@ -2,6 +2,10 @@ import {Injectable} from "@angular/core";
 import {Headers, Http} from "@angular/http";
 import {Comment} from "../models/comment";
 
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import {Observable} from "rxjs";
+
 @Injectable()
 export class CommentService {
   private commentUrl = 'api/comment';  // URL to web API
@@ -9,24 +13,21 @@ export class CommentService {
 
   constructor(private http: Http) {}
 
-  deleteComment(id: number): Promise<void>{
+  deleteComment(id: number): Observable<void>{
     return this.http
       .delete(this.commentUrl + "/" + id, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
+      .map(() => null)
       .catch(this.handleError)
   }
 
-  createComment(title: string, pId: number): Promise<Comment>{
+  createComment(title: string, pId: number): Observable<Comment>{
     return this.http
       .post(this.commentUrl,JSON.stringify({title: title, likes:0, postId: pId}), {headers: this.headers})
-      .toPromise()
-      .then(comment => comment.json())
+      .map(comment => comment.json())
       .catch(this.handleError)
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private handleError(error: any): Observable<any> {
+    return Observable.throw(error.json().error || 'Server error');
   }
 }

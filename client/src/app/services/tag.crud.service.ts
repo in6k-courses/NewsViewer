@@ -1,8 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
-import "rxjs/add/operator/toPromise";
 import {Tag} from "../models/tag";
+import {Observable} from "rxjs";
 
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class TagService {
@@ -11,32 +13,28 @@ export class TagService {
 
   constructor (private http: Http) {}
 
-  create(title: string): Promise<Tag> {
+  create(title: string): Observable<Tag> {
     return this.http
       .post(this.tagUrl, JSON.stringify({title: title}), {headers: this.headers})
-      .toPromise()
-      .then(tag => tag.json())
+      .map(tag => tag.json())
       .catch(this.handleError);
   }
 
-  getAllTags(): Promise<Tag[]> {
+  getAllTags(): Observable<Tag[]> {
     return this.http
       .get(this.tagUrl)
-      .toPromise()
-      .then(response => response.json() as Tag[])
+      .map(response => response.json() as Tag[])
       .catch(this.handleError)
   }
 
 
-  delete(id: number): Promise<void> {
+  delete(id: number): Observable<void> {
     return this.http.delete(this.tagUrl + "/" + id, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
+      .map(() => null)
       .catch(this.handleError)
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private handleError(error: any): Observable<any> {
+    return Observable.throw(error.json().error || 'Server error');
   }
 }

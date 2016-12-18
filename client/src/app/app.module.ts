@@ -10,7 +10,7 @@ import {BestPostComponent} from "./bestpost/bestpost.component";
 import {TagsComponent} from "./tags/tags.component";
 import {TagService} from "./services/tag.crud.service";
 import {NewpostComponent} from "./newpost/newpost.component";
-import {PostService} from "./services/new.post.service";
+import {PostService} from "./services/post.service";
 import {CommentService} from "./services/comment.service";
 
 @NgModule({

@@ -30,11 +30,11 @@ export class NewsComponent implements OnInit {
   }
 
   getAllNews(): void {
-    this.newsService.getAllPost().then(posts => this.posts = posts);
+    this.newsService.getAllPosts().subscribe(posts => this.posts = posts);
   }
 
   private getAllTags() {
-    this.newsService.getAllTags().then(tags => this.tags = tags)
+    this.newsService.getAllTags().subscribe(tags => this.tags = tags)
   }
 
   private gotoCategory(tag: Tag): void{
@@ -43,23 +43,23 @@ export class NewsComponent implements OnInit {
 
   private deleteComment(comment: Comment, post: Post){
     this.comService.deleteComment(comment.id)
-      .then(()=> {post.comments = post.comments.filter(com => com !== comment)})
+      .subscribe(()=> {post.comments = post.comments.filter(com => com !== comment)})
   }
 
   private deletePost(post: Post){
     this.newsService.deletePost(post.id)
-      .then(()=> {this.posts = this.posts.filter(p => p !== post)})
+      .subscribe(()=> {this.posts = this.posts.filter(p => p !== post)})
   }
 
   private createComm(title: string, post: Post): void{
     title = title.trim();
     if (!title) {return;}
     this.comService.createComment(title, post.id)
-      .then(comm => post.comments.push(comm))
+      .subscribe(comm => post.comments.push(comm))
   }
 
   private addLike(post: Post): void{
     this.newsService.addLike(post.id)
-      .then(newPost => post.likes = newPost.likes)
+      .subscribe(newPost => post.likes = newPost.likes)
   }
 }
