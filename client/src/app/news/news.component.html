@@ -13,9 +13,9 @@
       </div>
     </div>
 
-    <div class="col-md-5">
-      <div class="list-group" *ngFor="let post of posts">
-        <a class="list-group-item">
+    <div class="col-md-5" >
+      <div class="list-group" *ngFor="let post of posts" (mouseleave)="onSelect(null)">
+        <a class="list-group-item" (mouseover)="onSelect(post)">
           <span (click)="deletePost(post)" class="glyphicon glyphicon-remove delete-post" aria-hidden="true"></span>
           <h4 class="list-group-item-heading">{{post.title}}</h4>
           <a class="post-like" (click)="addLike(post)">
@@ -28,6 +28,16 @@
           <li *ngFor="let comment of post.comments" class="list-group-item">{{comment.title}}
             <span class="glyphicon glyphicon-option-vertical comment-menu " aria-hidden="true">
             </span>
+          </li>
+          <li class="list-group-item" *ngIf="selectedPost === post">
+            <form>
+              <div class="form-group">
+                <input #commentTitle type="text" class="form-control" placeholder="New comment">
+              </div>
+              <button type="submit" class="btn btn-success"
+                      (click)="createComment(commentTitle.value, post); commentTitle.value=''">Додати
+              </button>
+            </form>
           </li>
         </ul>
       </div>

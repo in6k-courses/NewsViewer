@@ -14,6 +14,7 @@ import {CommentService} from "../services/comment.service";
 })
 export class NewsComponent implements OnInit {
 
+  selectedPost: Post;
   posts: Post[];
   tags: Tag[];
 
@@ -28,6 +29,11 @@ export class NewsComponent implements OnInit {
     //   .switchMap((params: Params) => params['id'])
     //   .subscribe(h => alert(h))
   }
+
+  onSelect(post: Post) {
+    this.selectedPost = post;
+  }
+
 
   getAllNews(): void {
     this.newsService.getAllPosts().subscribe(posts => this.posts = posts);
@@ -51,7 +57,7 @@ export class NewsComponent implements OnInit {
       .subscribe(()=> {this.posts = this.posts.filter(p => p !== post)})
   }
 
-  private createComm(title: string, post: Post): void{
+  private createComment(title: string, post: Post): void {
     title = title.trim();
     if (!title) {return;}
     this.comService.createComment(title, post.id)
