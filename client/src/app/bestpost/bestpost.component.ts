@@ -22,7 +22,7 @@ export class BestPostComponent implements OnInit {
   }
 
   private getBestPost(){
-    this.service.getBestPost().then(resp =>this.post = resp);
+    this.service.getBestPost().subscribe(resp =>this.post = resp);
   }
 
   goBack(): void {

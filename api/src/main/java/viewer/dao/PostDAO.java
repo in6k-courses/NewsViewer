@@ -3,9 +3,7 @@ package viewer.dao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Property;
+import org.hibernate.criterion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import viewer.model.Post;
@@ -29,12 +27,13 @@ public class PostDAO {
         return (Post) criteria.uniqueResult();
     }
 
-    public void addLike(Integer postId){
+    public Post addLike(Integer postId){
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Post.class)
                 .add(eq("id", postId));
         Post post = (Post) criteria.uniqueResult();
-        post.setLikes(post.getLikes() + 1);
+        post.setLikes(post.getLikes() == null ? 1 : post.getLikes() + 1  );
         sessionFactory.getCurrentSession().save(post);
+        return post;
     }
 
     public void deletePost(Integer id){
@@ -63,6 +62,19 @@ public class PostDAO {
     }
 
     public List<Post> getAll() {
-        return sessionFactory.getCurrentSession().createCriteria(Post.class).list();
+        return sessionFactory.getCurrentSession().createCriteria(Post.class)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .list();
+    }
+
+    public List<Post> search(String term) {
+        Session session = sessionFactory.getCurrentSession();
+
+        List<Post> posts = (List<Post>) session.createCriteria(Post.class)
+                .add(Restrictions.like("title", "%" + term + "%"))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .list();
+        return posts;
+
     }
 }

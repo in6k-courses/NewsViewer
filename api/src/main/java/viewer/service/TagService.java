@@ -23,7 +23,11 @@ public class TagService {
         return tagDAO.getAllTags();
     }
 
-    public void createTag(String title) {
-        tagDAO.createTag(title);
+    public Tag createTag(String title) {
+       return tagDAO.createTag(title);
+    }
+
+    public void deleteTag(Integer id) {
+        tagDAO.deleteTag(id);
     }
 }

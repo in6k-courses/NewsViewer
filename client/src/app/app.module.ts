@@ -9,13 +9,19 @@ import {NewsService} from "./services/news.service";
 import {BestPostComponent} from "./bestpost/bestpost.component";
 import {TagsComponent} from "./tags/tags.component";
 import {TagService} from "./services/tag.crud.service";
+import {NewpostComponent} from "./newpost/newpost.component";
+import {PostService} from "./services/post.service";
+import {CommentService} from "./services/comment.service";
+import { SearchPostComponent } from './search-post/search-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewsComponent,
     BestPostComponent,
-    TagsComponent
+    TagsComponent,
+    NewpostComponent,
+    SearchPostComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,7 @@ import {TagService} from "./services/tag.crud.service";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [NewsService, TagService],
+  providers: [NewsService, TagService, PostService, CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

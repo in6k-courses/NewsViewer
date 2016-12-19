@@ -23,8 +23,8 @@ public class PostService {
         return postDAO.getPostById(id);
     }
 
-    public void addLike(Integer id) {
-        postDAO.addLike(id);
+    public Post addLike(Integer id) {
+        return postDAO.addLike(id);
     }
 
     public void deletePost(Integer id) {
@@ -38,5 +38,13 @@ public class PostService {
 
     public Post getBestPost() {
         return postDAO.getBestPost();
+    }
+
+    public void createPost(String title) {
+        postDAO.createPost(title, 1);
+    }
+
+    public List<Post> search(String term) {
+        return postDAO.search(term);
     }
 }

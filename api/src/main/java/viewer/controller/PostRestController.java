@@ -2,10 +2,7 @@ package viewer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import viewer.model.Post;
 import viewer.service.PostService;
 
@@ -15,7 +12,7 @@ import java.util.List;
  * Created by employee on 12/6/16.
  */
 @Controller
-@RequestMapping("/api/post")
+@RequestMapping("/api/posts")
 public class PostRestController {
 
     @Autowired
@@ -33,15 +30,14 @@ public class PostRestController {
     }
 
     @RequestMapping(value = "/{id}/like", method = RequestMethod.PATCH)
-    @ResponseBody String addLike(@PathVariable("id")Integer id){
-        postService.addLike(id);
-        return "";
+    @ResponseBody Post addLike(@PathVariable("id")Integer id){
+        return postService.addLike(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody String deletePost(@PathVariable("id")Integer id){
+    @ResponseBody Post deletePost(@PathVariable("id")Integer id){
         postService.deletePost(id);
-        return "";
+        return null;
     }
 
     @RequestMapping(value = "/best", method = RequestMethod.GET)
@@ -49,5 +45,15 @@ public class PostRestController {
         return postService.getBestPost();
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody String createPost(@RequestBody()Post post){
+        postService.createPost(post.getTitle());
+        return "";
+    }
+
+    @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
+    @ResponseBody List<Post> searchPosts(@PathVariable("term")String term){
+        return postService.search(term);
+    }
 
 }

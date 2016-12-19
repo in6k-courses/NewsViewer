@@ -3,6 +3,7 @@ import {TagService} from "../services/tag.crud.service";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {Tag} from "../models/tag";
+import Promise = webdriver.promise.Promise;
 
 @Component({
   selector: 'app-tags',
@@ -20,16 +21,21 @@ export class TagsComponent implements OnInit {
   }
 
   private getAllTags() {
-    this.tagService.getAllTags().then(tags => this.tags = tags)
+    this.tagService.getAllTags().subscribe(tags => this.tags = tags)
   }
 
-  add(title: string): void {
+  createTag(title: string): void {
     title = title.trim();
     if (!title) { return; }
     this.tagService.create(title)
-      .then(tag => {
+      .subscribe(tag => {
         this.tags.push(tag);
       });
+  }
+
+  deleteTag(tag: Tag): void{
+    this.tagService.delete(tag.id)
+      .subscribe(()=> {this.tags = this.tags.filter(t => t !== tag)})
   }
 
   goBack(): void {

@@ -1,0 +1,10 @@
+<div id="search-component">
+  <input #searchBox type="text" class="form-control"
+         placeholder="Search" (keyup)="search(searchBox.value)">
+  <div>
+    <div *ngFor="let p of searchPosts | async"
+         (click)="gotoDetail(hero)" class="search-result">
+      {{p.title}}
+    </div>
+  </div>
+</div>

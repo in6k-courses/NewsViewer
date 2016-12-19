@@ -1,18 +1,47 @@
-<h2>Categories</h2>
-<div>
-  <ul class="tags">
-    <li *ngFor="let tag of tags">
-      <span><a href="" (click)="gotoCategory(tag)">{{tag.title}}</a></span>
-    </li>
-  </ul>
-</div>
-<h2>Fresh news</h2>
-<div>
-  <ul class="posts">
-    <li *ngFor="let post of posts">
-      <span>{{post.title}}</span>
-      <button class="like">Like</button>
-      <span>{{post.likes}}</span>
-    </li>
-  </ul>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-4">
+      <h2></h2>
+      <div class="list-group">
+        <a class="list-group-item active">
+          Categories
+        </a>
+        <a *ngFor="let tag of tags" class="nav nav-pills nav-stacked list-group-item">
+          <span (click)="gotoCategory(tag)" role="presentation">{{tag.title}}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-5" >
+      <div class="list-group" *ngFor="let post of posts" (mouseover)="onSelect(post)" (mouseleave)="onSelect(null)">
+        <a class="list-group-item">
+          <span (click)="deletePost(post)" class="glyphicon glyphicon-remove delete-post" aria-hidden="true"></span>
+          <h4 class="list-group-item-heading">{{post.title}}</h4>
+          <a class="post-like" (click)="addLike(post)">
+              <span class="glyphicon glyphicon-heart" aria-hidden="true">
+              </span>{{post.likes}} </a>
+          <a class="post-comments">
+            <span class="glyphicon glyphicon-comment">{{post.comments.length}}</span></a>
+        </a>
+        <ul class="list-group">
+          <li *ngFor="let comment of post.comments" class="list-group-item">{{comment.title}}
+            <span class="glyphicon glyphicon-option-vertical comment-menu " aria-hidden="true">
+            </span>
+          </li>
+          <li class="list-group-item" *ngIf="selectedPost === post">
+            <form>
+              <div class="form-group">
+                <input #commentTitle type="text" class="form-control" placeholder="New comment">
+              </div>
+              <button type="submit" class="btn btn-success"
+                      (click)="createComment(commentTitle.value, post); commentTitle.value=''">Додати
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
 </div>

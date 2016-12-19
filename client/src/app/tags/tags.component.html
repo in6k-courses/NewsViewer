@@ -1,14 +1,38 @@
-<h2>Categories</h2>
-<div>
-  <ul class="tags">
-    <li *ngFor="let tag of tags">
-      <span><a href="" (click)="gotoCategory(tag)">{{tag.title}}</a></span>
-    </li>
-  </ul>
-</div>
-<label>Tag name:</label> <input #tagTitle />
-<button (click)="add(tagTitle.value); tagTitle.value=''">
-  Add
-</button>
-<button (click)="goBack()">Back</button>
+<div class="container">
+  <div class="row">
+    <div class="panel panel-default no-more-table" col-md-8>
 
+      <!-- Default panel contents -->
+      <div class="panel-heading">Categories</div>
+
+      <!-- Table -->
+      <table class="table table-condensed table-striped">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let tag of tags; let num = index">
+          <td>{{num + 1}}</td>
+          <td>
+            <a href="" (click)="gotoCategory(tag)">{{tag.title}}</a>
+            <button class="btn btn-default btn-xs"
+                    (click)="deleteTag(tag)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input #tagTitle type="text" class="form-control" placeholder="New category">
+      </div>
+      <button type="submit" class="btn btn-success"
+              (click)="createTag(tagTitle.value); tagTitle.value=''">Додати
+      </button>
+    </form>
+
+  </div>
+</div>

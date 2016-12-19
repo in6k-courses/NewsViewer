@@ -33,4 +33,9 @@ public class CommentDAO {
         Comment comment = (Comment) criteria.uniqueResult();
         session.delete(comment);
     }
+
+    public Comment createComment(Comment comment) {
+        sessionFactory.getCurrentSession().save(comment);
+        return comment;
+    }
 }

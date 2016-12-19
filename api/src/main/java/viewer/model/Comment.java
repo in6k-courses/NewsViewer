@@ -12,8 +12,8 @@ import javax.persistence.*;
 public class Comment {
 
     @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "c_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "title", nullable = false)
@@ -31,6 +31,12 @@ public class Comment {
     private Post post;
 
     public Comment() {
+    }
+
+    public Comment(String title, Integer likes, Integer postId) {
+        this.title = title;
+        this.likes = likes;
+        this.postId = postId;
     }
 
     public int getId() {
