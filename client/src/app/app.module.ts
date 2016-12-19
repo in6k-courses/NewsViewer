@@ -12,6 +12,7 @@ import {TagService} from "./services/tag.crud.service";
 import {NewpostComponent} from "./newpost/newpost.component";
 import {PostService} from "./services/post.service";
 import {CommentService} from "./services/comment.service";
+import { SearchPostComponent } from './search-post/search-post.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {CommentService} from "./services/comment.service";
     NewsComponent,
     BestPostComponent,
     TagsComponent,
-    NewpostComponent
+    NewpostComponent,
+    SearchPostComponent
   ],
   imports: [
     BrowserModule,

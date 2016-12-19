@@ -3,9 +3,7 @@ package viewer.dao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Property;
+import org.hibernate.criterion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import viewer.model.Post;
@@ -69,4 +67,14 @@ public class PostDAO {
                 .list();
     }
 
+    public List<Post> search(String term) {
+        Session session = sessionFactory.getCurrentSession();
+
+        List<Post> posts = (List<Post>) session.createCriteria(Post.class)
+                .add(Restrictions.like("title", "%" + term + "%"))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .list();
+        return posts;
+
+    }
 }

@@ -25,15 +25,18 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     this.getAllTags();
     this.getAllNews();
-    // this.route.params
-    //   .switchMap((params: Params) => params['id'])
-    //   .subscribe(h => alert(h))
+    // try {
+    //   this.route.params
+    //     .switchMap((params: Params) => params['id'])
+    //     .subscribe(h => alert(h))
+    // }finally {
+    //
+    // }
   }
 
   onSelect(post: Post) {
     this.selectedPost = post;
   }
-
 
   getAllNews(): void {
     this.newsService.getAllPosts().subscribe(posts => this.posts = posts);

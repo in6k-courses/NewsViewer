@@ -51,4 +51,9 @@ public class PostRestController {
         return "";
     }
 
+    @RequestMapping(value = "/search/{term}", method = RequestMethod.GET)
+    @ResponseBody List<Post> searchPosts(@PathVariable("term")String term){
+        return postService.search(term);
+    }
+
 }

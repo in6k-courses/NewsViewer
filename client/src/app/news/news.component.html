@@ -14,8 +14,8 @@
     </div>
 
     <div class="col-md-5" >
-      <div class="list-group" *ngFor="let post of posts" (mouseleave)="onSelect(null)">
-        <a class="list-group-item" (mouseover)="onSelect(post)">
+      <div class="list-group" *ngFor="let post of posts" (mouseover)="onSelect(post)" (mouseleave)="onSelect(null)">
+        <a class="list-group-item">
           <span (click)="deletePost(post)" class="glyphicon glyphicon-remove delete-post" aria-hidden="true"></span>
           <h4 class="list-group-item-heading">{{post.title}}</h4>
           <a class="post-like" (click)="addLike(post)">

@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
-import {Http, Headers} from "@angular/http";
+import {Http, Headers, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Post} from "../models/post";
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
 import {Observable} from "rxjs";
 
 
@@ -26,6 +25,12 @@ export class PostService {
     this.http
       .post(this.postUrl, JSON.stringify({title: title}), {headers: this.headers})
       .toPromise()
+  }
+
+  search(term: string): Observable<Post[]> {
+    return this.http
+      .get(`api/posts/search/${term}`)
+      .map((r: Response) => r.json() as Post[]);
   }
 
   private handleError(error: any): Observable<any> {

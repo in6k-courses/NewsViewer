@@ -43,4 +43,8 @@ public class PostService {
     public void createPost(String title) {
         postDAO.createPost(title, 1);
     }
+
+    public List<Post> search(String term) {
+        return postDAO.search(term);
+    }
 }
